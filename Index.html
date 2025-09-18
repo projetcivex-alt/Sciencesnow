@@ -1,1 +1,689 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScienceNow - Actualités et découvertes en cosmologie et astrophysique</title>
+  <meta name="description" content="ScienceNow vous fait voyager au cœur de l'univers : cosmologie, astrophysique et découvertes scientifiques passionnantes.">
+  <meta name="twitter:site" content="@ScienceNow">
+  <meta name="twitter:title" content="ScienceNow - Actualités et découvertes en cosmologie et astrophysique">
+  <meta name="twitter:description" content="ScienceNow vous fait voyager au cœur de l'univers : cosmologie, astrophysique et découvertes scientifiques passionnantes.">
+  <meta name="twitter:image" content="/images/Multiverse.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="index, follow">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
+  <!-- CSS externe (header, footer, slider, global) -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- CSS spécifique intégré -->
+  <style>
+    :root {
+      --color-bg: #ffffff;
+      --color-titre: #1a1a1a;
+      --color-texte: #333333;
+      --color-carte-bg: #f9f9f9;
+      --color-tag-bg: #0077ff;
+      --color-tag-text: #ffffff;
+
+      /* Dimensions images secondaires */
+      --img-secondary-width: 150px;
+      --img-secondary-height: 150px;
+      --img-secondary-width-mobile: 150px;
+      --img-secondary-height-mobile: 150px;
+    }
+    
+    /* ===== Section Articles Accueil ===== */
+    .articles-accueil {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10;
+      position: relative;
+    }
+
+    .articles-accueil .section-title {
+      position: relative;
+      color: var(--color-titre);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    /* Soulignement moderne large */
+    .articles-accueil .section-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -12px;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(120deg, #0077ff, #ff6600, #00ffcc);
+      border-radius: 4px;
+      transform: scaleX(1);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+
+    .articles-accueil .section-title:hover::after {
+      transform: scaleX(1.05);
+    }
+
+    /* Carte principale */
+    .carte.principale {
+      display: block;
+      background-color: var(--color-carte-bg);
+      text-decoration: none;
+      color: inherit;
+      margin-bottom: 30px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .carte.principale img {
+      width: 100%;
+      height: auto;
+      max-height: 200px;
+      object-fit: cover;
+    }
+
+    .carte.principale .contenu {
+      padding: 15px;
+    }
+
+    .carte.principale .titre {
+      color: var(--color-titre);
+      font-size: 1.2rem;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    .carte.principale .texte {
+      color: var(--color-texte);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Cartes secondaires */
+    .cartes-secondaires {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .carte.secondaire {
+      display: block;
+      background-color: var(--color-carte-bg);
+      text-decoration: none;
+      color: inherit;
+      border-radius: 4px;
+      overflow: hidden;
+      padding: 10px 2px;
+    }
+
+    .carte.secondaire .top {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+    }
+
+    .carte.secondaire .top img {
+      width: var(--img-secondary-width);
+      height: var(--img-secondary-height);
+      object-fit: cover;
+      flex-shrink: 0;
+      border-radius: 4px;
+    }
+
+    .carte.secondaire .top .tag {
+      position: absolute;
+      top: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--color-tag-bg);
+      color: var(--color-tag-text);
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      white-space: nowrap;
+      z-index: 10;
+      transition: transform 0.3s ease;
+    }
+
+    .carte.secondaire:hover .tag {
+      transform: translateX(-50%) translateY(-2px);
+    }
+
+    .titre-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .titre-container .date {
+      font-size: 0.6rem;
+      color: #0077ff;
+      display: block;
+      text-align: center;
+      font-style: italic;
+      margin-bottom: 4px;
+    }
+
+    .carte.secondaire .top .titre {
+      color: var(--color-titre);
+      font-size: 1.2rem;
+      margin: 0;
+      text-align: center;
+      padding-top: 0;
+    }
+
+    .carte.secondaire .texte {
+      color: var(--color-texte);
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-top: 10px;
+      width: 100%;
+      text-align: left;
+    }
+    
+    /* Marge gauche pour les textes de la première section */
+.articles-accueil .carte.principale .texte,
+.articles-accueil .carte.secondaire .texte {
+  margin-left: 10px; /* ajuste la valeur selon ton besoin */
+  text-align: left;  /* pour éviter le centrage */
+}
+
+    @media (max-width: 768px) {
+      .carte.secondaire .top img {
+        width: var(--img-secondary-width-mobile);
+        height: var(--img-secondary-height-mobile);
+      }
+    }
+
+    @media (min-width: 769px) {
+      .cartes-secondaires {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .carte.secondaire {
+        flex: 1 1 calc(50% - 20px);
+      }
+    }
+
+    .voir-plus-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .voir-plus-btn {
+      display: inline-block;
+      padding: 10px 10px;
+      background-color: transparent;
+      color: #0077ff;
+      text-decoration: none;
+      font-weight: 500;
+      border: 2px solid #0077ff;
+      border-radius: 4px;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .voir-plus-btn:hover,
+    .voir-plus-btn:focus {
+      background-color: #0077ff;
+      color: #fff;
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .voir-plus-btn:active {
+      transform: translateY(0);
+      background-color: #005bb5;
+    }
+
+    /* Cartes liste */
+    .articles-liste {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 10px;
+    }
+
+    .articles-liste .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-align: center;
+      color: var(--color-titre);
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .articles-liste .section-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(120deg, #0077ff, #ff6600, #00ffcc);
+      border-radius: 4px;
+    }
+
+    .carte-liste {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 25px 0;
+      text-decoration: none;
+      color: var(--color-texte);
+      border-bottom: 1px solid #ddd;
+    }
+
+    .image-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .image-container img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .image-container .tag {
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--color-tag-bg);
+      color: var(--color-tag-text);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      z-index: 5;
+    }
+
+    .texte-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    .texte-container p {
+      margin: 5 0 10px 0;
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .texte-container .date {
+      font-size: 0.75rem;
+      color: #0077ff;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .carte-liste {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+      .image-container img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <!-- Logo -->
+      <a href="/index.html" class="logo">
+        <span class="science">Science</span><span class="now">Now</span>
+      </a>
+
+      <!-- Menu -->
+      <div class="menu" id="menu">
+        <a href="/index.html">Accueil</a>
+        <a href="/articles-actualites.html">Actualités Spatiale</a>
+        <a href="/articles-sciences.html">Sciences et Théories</a>
+        <a href="/articles-cosmologie.html">Cosmologie</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- Titre principal SEO -->
+<h1 style="display:none;">ScienceNow – Actualités et découvertes en cosmologie et astrophysique</h1>
+
+<!-- Slider -->
+<div class="slider-container">
+  <div class="slider" id="slider">
+    <div class="card active">
+      <img src="/images/Multiverse.png" alt="Illustration de la théorie du multivers" loading="lazy" width="600" height="400">
+      <div class="card-content">
+        <h3>La Théorie du Multivers</h3>
+        <p>Plongez au cœur des théories et des preuves scientifiques de l'existence possible de multiples univers...</p>
+        <div class="btn-right">
+          <a href="/articles-sciencenow/theories-scientifiques/theorie-du-multivers.html" class="btn">Lire l’article</a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="/images/trous_noirs.png" alt="Représentation d’un trou noir" loading="lazy" width="600" height="400">
+      <div class="card-content">
+        <h3>Le Mystère des Trous Noirs</h3>
+        <p>Mystérieux et puissants, les trous noirs défient la physique et captivent l’imagination humaine...</p>
+        <div class="btn-right">
+          <a href="/articles-sciencenow/cosmologie/les-trous-noirs.html" class="btn">Lire l’article</a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="/images/matiere-noire.jpg" alt="Schéma illustrant la matière noire" loading="lazy" width="600" height="400">
+      <div class="card-content">
+        <h3>La Matière Noire</h3>
+        <p>La matière noire, invisible mais omniprésente, façonne l’univers et défie notre compréhension cosmique...</p>
+        <div class="btn-right">
+          <a href="/articles-sciencenow/cosmologie/la-matiere-noire.html" class="btn">Lire l’article</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Barre de recherche -->
+<section class="search-section">
+  <div class="container">
+    <form id="search-form">
+      <input type="text" id="search-input" placeholder="Rechercher un article..." aria-label="Recherche d'article">
+      <button type="submit">🔍</button>
+    </form>
+  </div>
+</section>
+
+<!-- Section 1 : Astronomie et Cosmologie -->
+<section class="articles-accueil">
+  <h2 class="section-title">SCIENCES & ESPACE</h2>
+  
+  <!-- Carte principale -->
+  <a href="/articles-sciencenow/exploration-spatiale/exploration-mars.html" class="carte principale">
+    <img src="/images/telescope.jpg" alt="missions nasa sur la planète mars">
+    <div class="contenu">
+      <h3 class="titre">Premiers pas sur Mars : rêve ou réalité imminente ?</h3>
+      <p class="texte">Découvrez les missions vers Mars, leurs défis technologiques et scientifiques, et comment elles préparent l’avenir de l’exploration spatiale humaine...</p>
+    </div>
+  </a>
+
+  <div class="cartes-secondaires">
+    <!-- Carte secondaire 1 -->
+    <a href="/articles-sciencenow/cosmologie/la-vitesse-de-la-lumiere.html" class="carte secondaire">
+      <div class="top">
+        <img src="/images/vitesse_lumiere.jpeg" alt="La vitesse de la lumière">
+        <span class="tag">Sciences</span>
+        <div class="titre-container">
+          <span class="date">15 sept 2025</span>
+          <h3 class="titre">Quand la vitesse ultime défie notre imagination
+</h3>
+        </div>
+      </div>
+      <p class="texte">La vitesse de la lumière, limite cosmique fascinante, ouvre un univers de mystères et de défis scientifiques vertigineux à explorer...</p>
+    </a>
+
+    <!-- Carte secondaire 2 -->
+    <a href="/articles-sciencenow/cosmologie/ondes-gravitationnelles.html" class="carte secondaire">
+      <div class="top">
+        <img src="/images/ondes-gravitationnelles.jpg" alt="Ondes gravitationnelles">
+        <span class="tag">Cosmologie</span>
+        <div class="titre-container">
+          <span class="date">15 sept 2025</span>
+          <h3 class="titre">Ondes gravitationnelles : l’univers invisible</h3>
+        </div>
+      </div>
+      <p class="texte">Les ondes gravitationnelles, ondulations de l’espace-temps, révèlent des événements cosmiques lointains : elles ouvrent une fenêtre sur l’univers et ses phénomènes extrêmes...</p>
+    </a>
+
+    <!-- Carte secondaire 3 -->
+    <a href="/articles-sciencenow/cosmologie/les-exoplanetes.html" class="carte secondaire">
+      <div class="top">
+        <img src="/images/exoplanetes.jpg" alt="Découverte des exoplanètes">
+        <span class="tag">Cosmologie</span>
+        <div class="titre-container">
+          <span class="date">15 sept 2025</span>
+          <h3 class="titre">Exoplanètes : Mondes lointains et promesses de vie</h3>
+        </div>
+      </div>
+      <p class="texte">Les exoplanètes fascinent par leur diversité : mondes lointains aux atmosphères étranges, elles nourrissent l’espoir de découvrir ailleurs les conditions propices à la vie...</p>
+    </a>
+    
+        <!-- Carte secondaire 4 -->
+    <a href="/articles-sciencenow/exploration-spatiale/mission-lunaire.html" class="carte secondaire">
+      <div class="top">
+        <img src="/images/lune.jpg" alt="exploration de la lune,prochaines missions prevues par la nasa et esa">
+        <span class="tag">Cosmologie</span>
+        <div class="titre-container">
+          <span class="date">15 sept 2025</span>
+          <h3 class="titre">Et si L’humanité retournait sur la Lune?</h3>
+        </div>
+      </div>
+      <p class="texte">L’exploration lunaire renaît, mêlant science, technologie et rêves d’avenir, pour préparer l’humanité à conquérir de nouveaux horizons cosmiques.
+...</p>
+    </a>
+  </div>
+  <div class="voir-plus-container">
+  <a href="/articles-sciences.html" class="voir-plus-btn">Voir plus</a>
+</div>
+</section>
+
+</section>
+
+    <!--liste article-->
+<section class="articles-liste">
+  <h2 class="section-title">Articles Récents</h2>
+
+  <!-- Carte 1 -->
+  <a href="/articles-sciencenow/theories-scientifiques/theorie-des-cordes.html" class="carte-liste">
+    <div class="image-container">
+      <span class="tag">Sciences</span>
+      <img src="/images/cordes.jpg" alt="La theorie des cordes">
+    </div>
+    <div class="texte-container">
+      <p>La théorie des cordes cherche à unifier toutes les forces de l’univers, révélant une réalité vibrante où matière, espace et temps ne font qu’un....</p>
+      <span class="date">19 sept 2025</span>
+    </div>
+  </a>
+
+  <!-- Carte 2 -->
+  <a href="/articles-sciencenow/theories-scientifiques/paradoxe-de-fermi.html" class="carte-liste">
+    <div class="image-container">
+      <span class="tag">Cosmologie</span>
+      <img src="/images/paradoxe_fermi.jpg" alt="Le mystere du paradoxe de fermi">
+    </div>
+    <div class="texte-container">
+      <p>Le paradoxe de Fermi interroge notre solitude cosmique : si l’univers est immense et peuplé d’étoiles, pourquoi n’avons-nous encore trouvé aucune trace de vie ?</p>
+      <span class="date">19 sept 2025</span>
+    </div>
+  </a>
+
+  <!-- Carte 3 -->
+  <a href="/articles-sciencenow/exploration-spatiale/etudes-cometes.html" class="carte-liste">
+    <div class="image-container">
+      <span class="tag">Recherche</span>
+      <img src="/images/cometes.jpg" alt="etudes des comètes ">
+    </div>
+    <div class="texte-container">
+      <p>Les comètes, vestiges glacés du Système solaire, dévoilent leurs secrets en traversant le ciel : leur étude éclaire l’origine de l’eau, des planètes et de la vie...</p>
+      <span class="date">18 sept 2025</span>
+    </div>
+  </a>
+
+  <!-- Carte 4 -->
+  <a href="/articles-sciencenow/theories-scientifiques/le-voyage-dans-le-temps.html" class="carte-liste">
+    <div class="image-container">
+      <span class="tag">Sciences</span>
+      <img src="/images/Voyage_temps.webp" alt="le voyage dans le temps ">
+    </div>
+    <div class="texte-container">
+      <p>Le voyage dans le temps fascine depuis toujours : explorer hier ou demain questionne nos limites, nos paradoxes et le mystère même de la réalité...</p>
+      <span class="date">17 sept 2025</span>
+    </div>
+  </a>
+
+  <!-- Carte 5 -->
+  <a href="/articles-sciencenow/theories-scientifiques/theorie-du-multivers.html" class="carte-liste">
+    <div class="image-container">
+      <span class="tag">Sciences</span>
+      <img src="/images/Multiverse.png" alt="multivers et mondes parallèles">
+    </div>
+    <div class="texte-container">
+      <p>Le multivers, hypothèse vertigineuse, suggère d’innombrables univers parallèles : explorer cette idée, c’est repousser les frontières du réel et repenser notre place cosmique.
+..</p>
+      <span class="date">17 sept 2025</span>
+    </div>
+  </a>
+
+  <!-- Carte 6 -->
+  <a href="/articles-sciencenow/cosmologie/la-matiere-noire.html" class="carte-liste">
+    <div class="image-container">
+      <span class="tag">Cosmologie</span>
+      <img src="/images/matiere-noire.jpg" alt="La matiere noire">
+    </div>
+    <div class="texte-container">
+      <p>La matière noire, invisible mais omniprésente, façonne l’univers : la comprendre pourrait révéler les mystères de la gravité, des galaxies et de l’infini cosmique...</p>
+      <span class="date">15 septembre 2025</span>
+    </div>
+  </a>
+
+</section>
+
+</section>
+
+<!-- Section 1 : Astronomie et Cosmologie -->
+<section class="articles-accueil">
+  <h2 class="section-title">SCIENCES & ESPACE</h2>
+  
+  <!-- Carte principale -->
+  <a href="/articles-sciencenow/cosmologie/les-trous-noirs.html" class="carte principale">
+    <img src="/images/telescope.jpg" alt="Le mystère des trous noirs">
+    <div class="contenu">
+      <h3 class="titre">LE MYSTÈRE DES TROUS NOIRS</h3>
+      <p class="texte">Découvrez comment les trous noirs déforment l'espace-temps et influencent l'univers autour d'eux...</p>
+    </div>
+  </a>
+
+  <div class="cartes-secondaires">
+    <!-- Carte secondaire 1 -->
+    <a href="/articles-sciencenow/cosmologie/la-vitesse-de-la-lumiere.html" class="carte secondaire">
+      <div class="top">
+        <img src="/images/vitesse_lumiere.jpeg" alt="La vitesse de la lumière">
+        <span class="tag">Cosmologie</span>
+        <div class="titre-container">
+          <span class="date">15 sept 2025</span>
+          <h3 class="titre">Dernières Missions de la NASA sur Mars</h3>
+        </div>
+      </div>
+      <p class="texte">Les dernières découvertes des rovers de la NASA sur Mars, leurs impacts scientifiques et les futures missions...</p>
+    </a>
+
+    <!-- Carte secondaire 2 -->
+    <a href="/articles-sciencenow/cosmologie/ondes-gravitationnelles.html" class="carte secondaire">
+      <div class="top">
+        <img src="/images/ondes-gravitationnelles.jpg" alt="Ondes gravitationnelles">
+        <span class="tag">Cosmologie</span>
+        <div class="titre-container">
+          <span class="date">15 sept 2025</span>
+          <h3 class="titre">Incroyables Ondes Gravitationnelles</h3>
+        </div>
+      </div>
+      <p class="texte">Comment les scientifiques les détectent et ce qu’elles pourraient révèler sur l’univers et ses événements cosmiques...</p>
+    </a>
+
+    <!-- Carte secondaire 3 -->
+    <a href="/articles-sciencenow/cosmologie/les-exoplanetes.html" class="carte secondaire">
+      <div class="top">
+        <img src="/images/exoplanetes.jpg" alt="Découverte des exoplanètes">
+        <span class="tag">Cosmologie</span>
+        <div class="titre-container">
+          <span class="date">15 sept 2025</span>
+          <h3 class="titre">Découverte de nouvelles Exoplanètes</h3>
+        </div>
+      </div>
+      <p class="texte">Un grand tour d’horizon des nouvelles exoplanètes découvertes cette année et de leurs caractéristiques fascinantes...</p>
+    </a>
+    
+        <!-- Carte secondaire 4 -->
+    <a href="/articles-sciencenow/cosmologie/les-exoplanetes.html" class="carte secondaire">
+      <div class="top">
+        <img src="/images/lune.jpg" alt="Découverte des exoplanètes">
+        <span class="tag">Cosmologie</span>
+        <div class="titre-container">
+          <span class="date">15 sept 2025</span>
+          <h3 class="titre">Découverte de nouvelles Exoplanètes</h3>
+        </div>
+      </div>
+      <p class="texte">Un grand tour d’horizon des nouvelles exoplanètes découvertes cette année et de leurs caractéristiques fascinantes...</p>
+    </a>
+  </div>
+  <div class="voir-plus-container">
+  <a href="/articles-sciences.html" class="voir-plus-btn">Voir plus</a>
+</div>
+</section>
+
+<footer>
+  <H3>Partagez nous sur les Reseaux</H3>
+    <!--barre de partage-->
+  <div class="share-bar">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=/index.html" class="share-btn facebook" target="_blank" rel="noopener" aria-label="Partager sur Facebook">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11 9.95v-7.05h-3v-2.9h3v-2.2c0-3 1.8-4.65 4.53-4.65 1.3 0 2.66.24 2.66.24v2.93h-1.5c-1.48 0-1.94.92-1.94 1.86v2.02h3.3l-.53 2.9h-2.77V21.95A10 10 0 0 0 22 12z"/></svg>
+    </a>
+
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TEXTE_A_PARTAGER" class="share-btn twitter" target="_blank" rel="noopener" aria-label="Partager sur X">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.28 4.28 0 0 0 1.88-2.37 8.55 8.55 0 0 1-2.71 1.04 4.26 4.26 0 0 0-7.28 3.88A12.08 12.08 0 0 1 3 4.8a4.26 4.26 0 0 0 1.32 5.69 4.21 4.21 0 0 1-1.93-.53v.05a4.26 4.26 0 0 0 3.42 4.18 4.27 4.27 0 0 1-1.92.07 4.26 4.26 0 0 0 3.98 2.97A8.55 8.55 0 0 1 2 19.54a12.07 12.07 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.39-.01-.58A8.7 8.7 0 0 0 24 4.56a8.47 8.47 0 0 1-2.54.7z"/></svg>
+    </a>
+
+    <a href="https://www.instagram.com/?url=URL_PAGE" class="share-btn instagram" target="_blank" rel="noopener" aria-label="Partager sur Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.584.012 4.85.07 1.17.056 1.95.24 2.4.4a4.92 4.92 0 0 1 1.77 1.15 4.92 4.92 0 0 1 1.15 1.77c.16.45.345 1.23.4 2.4.058 1.27.07 1.65.07 4.85s-.012 3.584-.07 4.85c-.056 1.17-.24 1.95-.4 2.4a4.92 4.92 0 0 1-1.15 1.77 4.92 4.92 0 0 1-1.77 1.15c-.45.16-1.23.345-2.4.4-1.27.058-1.65.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.056-1.95-.24-2.4-.4a4.92 4.92 0 0 1-1.77-1.15 4.92 4.92 0 0 1-1.15-1.77c-.16-.45-.345-1.23-.4-2.4-.058-1.27-.07-1.65-.07-4.85s.012-3.584.07-4.85c.056-1.17.24-1.95.4-2.4a4.92 4.92 0 0 1 1.15-1.77 4.92 4.92 0 0 1 1.77-1.15c.45-.16 1.23-.345 2.4-.4 1.27-.058 1.65-.07 4.85-.07zm0-2.16C8.73 0 8.332.012 7.052.07 5.783.126 4.892.308 4.12.568a7.07 7.07 0 0 0-2.56 1.68A7.07 7.07 0 0 0 .568 4.12C.308 4.892.126 5.783.07 7.052.012 8.332 0 8.73 0 12s.012 3.668.07 4.948c.056 1.27.238 2.162.498 2.934a7.07 7.07 0 0 0 1.68 2.56 7.07 7.07 0 0 0 2.56 1.68c.772.26 1.664.442 2.934.498C8.332 23.988 8.73 24 12 24s3.668-.012 4.948-.07c1.27-.056 2.162-.238 2.934-.498a7.07 7.07 0 0 0 2.56-1.68 7.07 7.07 0 0 0 1.68-2.56c.26-.772.442-1.664.498-2.934.058-1.28.07-1.678.07-4.948s-.012-3.668-.07-4.948c-.056-1.27-.238-2.162-.498-2.934a7.07 7.07 0 0 0-1.68-2.56 7.07 7.07 0 0 0-2.56-1.68c-.772-.26-1.664-.442-2.934-.498C15.668.012 15.27 0 12 0z"/><circle cx="12" cy="12" r="3.6"/></svg>
+    </a>
+
+    <a href="https://www.tiktok.com/upload?url=URL_PAGE" class="share-btn tiktok" target="_blank" rel="noopener" aria-label="Partager sur TikTok">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2v14.5a4.5 4.5 0 1 1-4.5-4.5h3v-10h3v10h3V2h-4.5z"/></svg>
+    </a>
+
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" class="share-btn linkedin" target="_blank" rel="noopener" aria-label="Partager sur LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4.98 3.5C3.33 3.5 2 4.83 2 6.48s1.33 2.98 2.98 2.98 2.98-1.33 2.98-2.98S6.63 3.5 4.98 3.5zM2.4 21h5.16v-12H2.4v12zM9.84 9h4.92v1.65h.07c.68-1.29 2.34-2.65 4.82-2.65 5.16 0 6.12 3.4 6.12 7.81v8.19h-5.16v-7.25c0-1.73-.03-3.95-2.4-3.95-2.4 0-2.77 1.88-2.77 3.83v7.37H9.84V9z"/></svg>
+    </a>
+
+    <a href="https://api.whatsapp.com/send?text=TEXTE_A_PARTAGER%20URL_PAGE" class="share-btn whatsapp" target="_blank" rel="noopener" aria-label="Partager sur WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.87 11.87 0 0 1-1.6-5.835C.144 5.313 5.48 0 12.056 0c3.181 0 6.155 1.24 8.408 3.492a11.87 11.87 0 0 1 3.488 8.415c-.003 6.574-5.318 11.912-11.882 11.912a11.79 11.79 0 0 1-5.814-1.602L.057 24zm6.597-3.807c1.669.99 3.448 1.591 5.456 1.593 5.476 0 9.947-4.472 9.95-9.95.003-5.477-4.468-9.945-9.946-9.947-5.476-.003-9.947 4.468-9.95 9.945-.002 2.225.656 3.92 1.746 5.595l-.999 3.648 3.768-1.598zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.148-1.758-.868-2.03-.967-.272-.099-.47-.148-.669.15-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.148-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.654-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.148-.173.198-.297.297-.495.099-.198.05-.372-.025-.52-.074-.148-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.148.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414z"/></svg>
+    </a>
+</div>
+  &copy; <span id="year"></span><a href="/index.html" style="color: #0077ff; text-decoration: none; font-weight: 500;">
+  ScienceNow
+</a>. Tous droits réservés.
+</footer>
+
+<!-- JS externe -->
+<script src="/js/script.js" defer></script>
+
+</body>
+</html>
